@@ -1,0 +1,22 @@
+knowvault/
+├── app/                         👈 Main app folder
+│   ├── main.py                  👈 FastAPI entry point
+│   ├── routers/                 👈 All FastAPI endpoints
+│   │   ├── upload.py            👈 File upload route
+│   │   ├── query.py             👈 Ask question, get answer
+│   ├── services/                👈 Core business logic
+│   │   ├── parser.py            👈 PDF/DOCX/Excel parsing
+│   │   ├── chunker.py           👈 Chunk logic for all types
+│   │   ├── embedding.py         👈 Embedding generator
+│   │   ├── vector_store.py      👈 Chroma/FAISS DB logic
+│   │   └── gpt.py               👈 GPT prompt + answer logic
+│   ├── models/                  👈 Pydantic models (data structure)
+│   │   └── file_model.py
+│   ├── utils/                   👈 Helper tools (if any)
+│   │   └── cleaner.py           👈 Text cleaner, formatter, etc.
+│   └── config.py                👈 Global paths, API keys, settings
+├── static/                      👈 Uploaded files go here
+├── requirements.txt             👈 All libraries
+├── Dockerfile                   👈 Optional - for deployment
+├── README.md                    👈 Project overview
+└── .env                         👈 Secret keys like OpenAI
