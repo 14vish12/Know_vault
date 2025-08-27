@@ -14,6 +14,8 @@ def add_data_to_database(File_name,embeding_list :list) ->list:
       documents=  original_text,
       embeddings= embeding_text,
       metadatas=metadata
+
+      
       )
     
     return collection.get(ids=["file_chunk_0"],include=["embeddings", "documents", "metadatas"])
