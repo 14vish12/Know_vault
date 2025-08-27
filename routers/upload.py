@@ -3,6 +3,7 @@ import os, shutil
 from datetime import datetime
 from services.parser import extract_text_from_files
 from services.chunker import chunk_text
+from services.embeding import embed_chunks
 
 upload_file_router = APIRouter()  # ✅ This is important
 
@@ -20,10 +21,14 @@ async def upload_file(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, f)
 
     result = await extract_text_from_files(file_location)
-    short_text = await chunk_text(result)
+    chunkwise_text = await chunk_text(result)
+   
+    vector_text = embed_chunks(chunkwise_text)
+    # print(vector_text)
     return {
         "status": "success",
         "filename": custom_filename,
         "saved_to": file_location,
-        "chunks": short_text
+        # "chunks": chunkwise_text,
+        "vectors": vector_text
     }
