@@ -25,7 +25,7 @@ async def upload_file(file: UploadFile = File(...)):
     chunkwise_text = await chunk_text(result)
    
     vector_text = embed_chunks(chunkwise_text)
-    vector_store = add_data_to_database(ext,vector_text)
+    vector_store = add_data_to_database(file.filename,vector_text)
     return {
         "status": "success",
         "filename": custom_filename,
