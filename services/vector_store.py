@@ -18,14 +18,7 @@ def add_data_to_database(File_name, embeding_list: list) -> list:
         embeddings.append(item["embedding"])  # already a list of floats
         metadatas.append({"File_Name": File_name})
 
-    # return ids,documents,embeddings,metadatas
-    for i  in embeddings:
-        print(i)
-        print(len(i))
-        print(type(i))
-# result = add_data_to_database("example.txt",vector_list)
-# print(result)
-
+ 
     collection.add(
         ids=ids,
         documents=documents,
