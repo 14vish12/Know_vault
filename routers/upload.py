@@ -1,4 +1,5 @@
 from fastapi import APIRouter, File, UploadFile
+from fastapi.responses import RedirectResponse
 import os, shutil
 from datetime import datetime
 from services.parser import extract_text_from_files
@@ -26,11 +27,12 @@ async def upload_file(file: UploadFile = File(...)):
    
     vector_text = embed_chunks(chunkwise_text)
     vector_store = add_data_to_database(file.filename,vector_text)
-    return {
-        "status": "success",
-        "filename": custom_filename,
-        "saved_to": file_location,
-        # "chunks": chunkwise_text,
-        # "vectors": vector_text
-        "Database" : vector_store
-    }
+    # return {
+    #     # "status": "success",
+    #     # "filename": custom_filename,
+    #     # "saved_to": file_location,
+    #     # # "chunks": chunkwise_text,
+    #     # # "vectors": vector_text
+    #     # "Database" : vector_store
+    # }
+    return RedirectResponse(url="/", status_code=303)

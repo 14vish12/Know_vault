@@ -26,7 +26,7 @@ def add_data_to_database(File_name, embeding_list: list) -> list:
         metadatas=metadatas
     )
 
-    result = collection.get(ids=["chunk_1"], include=["embeddings", "documents", "metadatas"])
+    result = collection.get(ids=["file_chunk_0"], include=["embeddings", "documents", "metadatas"])
     return {
     "ids": result["ids"],
     "documents": result["documents"],
