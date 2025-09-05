@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
 from routers.upload import upload_file_router
+from routers.query import  query_router
 
 
 # ------------------------
@@ -15,7 +16,7 @@ app = FastAPI(title="KnowVault", description="A simple knowledge vault API", ver
 # ------------------------
 app.include_router(upload_file_router, prefix="/files", tags=["File Upload"])
 
-
+app.include_router(query_router, prefix="/query", tags=["Search"])
 
 # ------------------------
 # Root HTML Form
@@ -96,10 +97,11 @@ async def main():
                 </div>
 
                 <!-- Search Section -->
+                <!-- Search Section -->
                 <div class="section">
                     <h2>🔎 Search Query</h2>
-                    <form action="/query" method="post">
-                        <input name="query" type="text" placeholder="Enter your query..." required>
+                    <form action="/query/search" method="post">
+                        <input name="query" type="text" placeholder="Enter your query" required>
                         <input type="submit" value="Search">
                     </form>
                 </div>
@@ -110,9 +112,4 @@ async def main():
 
 # ------------------------
 # Query Endpoint
-# ------------------------
-@app.post("/query", tags=["Search"])
-async def query_endpoint(query: str):
-    from routers.query import search_documents, QueryRequest
-    request = QueryRequest(query=query)
-    return await search_documents(request)
+# ----------------------
